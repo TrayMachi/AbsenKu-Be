@@ -16,8 +16,8 @@ datasource db {
 
 model Person {
   id        String   @id @default(uuid()) @unique
-  userId    String   @unique
-  name      String   @unique
+  userId    String 
+  name      String   
   role      Role
   present   Boolean  @default(false)
   createdAt DateTime @default(now())
