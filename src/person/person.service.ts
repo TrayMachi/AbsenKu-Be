@@ -12,7 +12,7 @@ export class PersonService {
     });
   }
 
-  async findAll(role?: 'Dosen' | 'Asdos' | 'Mahasiswa', userId?: string) {
+  async findAll(userId: string, role?: 'Dosen' | 'Asdos' | 'Mahasiswa') {
     if (role)
       return this.databaseService.person.findMany({
         where: {
