@@ -15,14 +15,15 @@ export class PersonService {
   async findAll(
     userId: string,
     role?: 'Dosen' | 'Asdos' | 'Mahasiswa',
-    present?: boolean,
+    present?: "True" | "False",
   ) {
     if (role && present)
+      
       return this.databaseService.person.findMany({
         where: {
           role,
           userId,
-          present,
+          present: present === "True" ? true : false,
         },
       });
     else if (role)
@@ -36,7 +37,7 @@ export class PersonService {
       return this.databaseService.person.findMany({
         where: {
           userId,
-          present,
+          present: present === "True" ? true : false,
         },
       });
     else
