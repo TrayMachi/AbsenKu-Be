@@ -12,19 +12,39 @@ export class PersonService {
     });
   }
 
-  async findAll(userId: string, role?: 'Dosen' | 'Asdos' | 'Mahasiswa') {
-    if (role)
+  async findAll(
+    userId: string,
+    role?: 'Dosen' | 'Asdos' | 'Mahasiswa',
+    present?: boolean,
+  ) {
+    if (role && present)
+      return this.databaseService.person.findMany({
+        where: {
+          role,
+          userId,
+          present,
+        },
+      });
+    else if (role)
       return this.databaseService.person.findMany({
         where: {
           role,
           userId,
         },
       });
-    return this.databaseService.person.findMany({
-      where: {
-        userId,
-      },
-    });
+    else if (present)
+      return this.databaseService.person.findMany({
+        where: {
+          userId,
+          present,
+        },
+      });
+    else
+      return this.databaseService.person.findMany({
+        where: {
+          userId,
+        },
+      });
   }
 
   async findOne(id: string) {
