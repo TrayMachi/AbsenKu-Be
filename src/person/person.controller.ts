@@ -21,8 +21,7 @@ export class PersonController {
   }
 
   @Get()
-
-  findAll(@Param('userId') userId: string, @Query('role') role?: 'Dosen' | 'Asdos' | 'Mahasiswa'){
+  findAll(@Query('userId') userId: string, @Query('role') role?: 'Dosen' | 'Asdos' | 'Mahasiswa'){
     return this.personService.findAll(userId, role);
   }
 
